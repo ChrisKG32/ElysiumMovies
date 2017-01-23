@@ -1,0 +1,80 @@
+@import '../../../stylesheets/placeholders/_variables.scss';
+
+
+.popular-videos {
+	min-height: calc(45vh - #{$navbar-height});
+	//Margins
+	margin-bottom: 15px;
+	//Paddings
+	padding: 10px 15px 20px 15px;
+
+	//Styling
+	@include templateStyle();
+	border-radius: 0;
+	
+
+	img.header-img {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.img-container {
+		position: relative;
+		cursor: pointer;
+		max-height: 75%;
+		
+		div.video-preview {
+			position: relative;
+			border: 1px solid black;
+			max-width: 100%;
+			border-radius: 5px;
+			min-height: 175px;
+			background-size: cover;
+			background-position: center;
+			height: 200px;
+			width: 300px;
+
+			&:after {
+				content: '';
+				position: absolute;
+				top:0;
+				right:0;
+				bottom:0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0,0.5);
+			}
+		}
+
+		span.fa-eye {
+			position: absolute;
+			z-index: 99;
+			color: white;
+			top: 15px;
+			right: 20px;
+		}
+		span.fa-star {
+			position: absolute;
+			z-index: 99;
+			color: white;
+			bottom: 15px;
+			right: 20px;
+		}
+		span.vid-name {
+			position: absolute;
+			z-index: 99;
+			font-size: 150%;
+			color: white;
+			top: 5px;
+			right: 0px;
+			left: 0px;
+			margin-right: 50px;
+			margin-left: 50px;
+		}
+	}
+
+
+}
+
+

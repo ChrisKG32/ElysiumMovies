@@ -1,0 +1,12 @@
+@import '../../stylesheets/placeholders/_variables.scss';
+
+body, html {
+	min-height: 50vh;
+	background-color: $body-background-color;
+}
+
+.page-wrapper {
+	//Navbar height 70px;
+	//distance from navbar 15px;
+	margin-top: calc(70px + 15px);
+}

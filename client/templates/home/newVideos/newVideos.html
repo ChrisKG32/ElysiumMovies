@@ -1,0 +1,23 @@
+<template name="newVideos">
+	<div class="new-videos hidden-xs hidden-sm col-md-4">
+		<img src="/images/New Videos.png" style="display: block; margin: 0 auto;" class="text-center">
+		{{#if Template.subscriptionsReady}}
+			<ul class="list-group col-xs-12">
+				<li class="list-group-item col-xs-12">
+					<span class="col-xs-6 text-left no-gutter"><b>Name</b></span>
+					<span class="col-xs-4 text-left no-gutter"><b>Poster</b></span>
+					<span class="col-xs-2 text-center no-gutter"><b>Views</b></span>
+				</li>
+				{{#each newVids}}
+					<li class="list-group-item new-item col-xs-12">
+						<a class="col-xs-6 text-left no-gutter">{{name}}</a>
+						<a class="col-xs-4 text-left no-gutter">{{author}}</a>
+						<a class="col-xs-2 text-center no-gutter"><span class="fa fa-eye"> {{views}}</span></a>
+					</li>
+				{{/each}}
+			</ul>
+		{{else}}
+			{{> spinner}}
+		{{/if}}
+	</div>
+</template>

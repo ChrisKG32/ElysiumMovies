@@ -1,0 +1,18 @@
+
+@import '../../stylesheets/placeholders/placeholders.scss';
+
+.home {
+	@extend %no-gutter;
+	min-height: 50vh;
+
+
+}
+
+.no-gutter {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.spinner {
+	padding-top: 200px;
+}

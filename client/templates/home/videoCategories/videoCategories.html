@@ -1,0 +1,38 @@
+<template name="videoCategories">
+	<div class="video-categories col-xs-12 col-md-8">
+		<img src="/images/Video Categories.png" style="display: block; margin: 0 auto;" class="header-img">
+		{{#if Template.subscriptionsReady}}
+			<ul class="nav nav-tabs col-xs-12">
+				<li class="dropdown active class-selector">
+					<a class="dropdown-toggle header-select" data-toggle="dropdown" href="#">
+						{{classSelected}}
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu class-dropdown">
+						<li class="class-select"><a href="">All Classes</a></li>
+						<li class="class-select"><a href="">Druid</a></li>
+						<li class="class-select"><a href="">Hunter</a></li>
+						<li class="class-select"><a href="">Mage</a></li>
+						<li class="class-select"><a href="">Paladin</a></li>
+						<li class="class-select"><a href="">Priest</a></li> 
+						<li class="class-select"><a href="">Rogue</a></li>
+						<li class="class-select"><a href="">Shaman</a></li> 
+						<li class="class-select"><a href="">Warlock</a></li>
+						<li class="class-select"><a href="">Warrior</a></li> 
+					</ul>
+				</li>
+				<li class="category-li {{categorySelected 'PvP'}}"><a href="">PvP</a></li>
+				<li class="category-li {{categorySelected 'PvE'}}"><a href="">PvE</a></li>
+				<li class="category-li {{categorySelected 'Humor'}}"><a href="">Humor</a></li>
+				<li class="category-li {{categorySelected 'Classic'}}"><a href="">Classic</a></li>
+				<li class="category-li {{categorySelected 'Other'}}"><a href="">Other</a></li>
+			</ul>
+			<div class="table-wrapper col-xs-12">
+
+				{{> reactiveTable id="vid-categories" settings=settings}}
+			</div>
+		{{else}}
+			{{> spinner}}
+		{{/if}}
+	</div>
+</template>

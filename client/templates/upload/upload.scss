@@ -1,0 +1,79 @@
+@import '../../stylesheets/placeholders/_variables.scss';
+
+.upload {
+
+	@include templateStyle();
+	overflow: auto;
+	padding-bottom: 15px;
+	
+
+	img.header-img {
+		display: block;
+		margin: 0 auto 25px auto;
+		padding-top: 25px;
+		padding-bottom: 25px;
+
+	}
+
+	.video-preview-wrapper {
+		padding-left: 60px;
+		padding-right: 60px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: $div-background-color;
+
+
+
+		video, iframe {
+			height: 250px;
+			width: 100%;
+			border-radius: 10px;
+			box-shadow: 0px 0px 35px rgb(220,220,220);
+		}
+
+	}
+	.form-wrapper {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	
+
+
+		.sd-video-select, .hd-video-select, .sd-poster-select, .poster-preview, .sd-video-preview, .hd-video-preview {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		.video-upload-input, .poster-upload-input, .hd-video-upload-input {
+			margin-bottom: 5px;
+		}
+
+		fieldset {
+			margin-bottom: 25px;
+		}
+	}
+
+	.upload-headers {
+		margin-top: 30px;
+	}
+
+	.progress {
+		margin-bottom: 0;
+	}
+
+	input[name="video"].danger, input[name="poster"].danger {
+		border-color: #a94442;
+	}
+	.sd-help-block.danger, .vp-help-block.danger, label[for="video"].danger, label[for="poster"].danger {
+		color: #a94442;
+	}
+
+	.sd-help-block, .vp-help-block {
+		display: block;
+	}
+	
+	
+	
+	margin-bottom: 100px;
+}
+
+

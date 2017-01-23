@@ -1,0 +1,77 @@
+<template name="upload">
+	{{#if currentUser}}
+		<div class="upload">
+			<img src="/images/Upload Video.png" alt="" class="header-img">
+			{{#if Template.subscriptionsReady}}
+				<div class="video-preview-wrapper col-md-7 col-xs-12 pull-right">
+						<h3 class="text-center video-preview-header">SD Video Preview</h3>
+						{{#if youtubeVideo}}
+							<iframe src="{{youtubeEmbed}}" frameborder="0" allowfullscreen></iframe>
+						{{else}}
+							<video class="video-preview" src="{{videoURL}}" type="video/mp4" width="auto" controls></video>
+							<h3 class="text-center video-preview-header">HD Video Preview</h3>
+							<video class="video-preview" src="{{hdVideoURL}}" type="video/mp4" width="auto" controls></video>
+						{{/if}}	
+						<h3 class="text-center poster-preview-header">Poster Preview</h3>
+						<video class="poster-preview" src="" poster="{{posterURL}}" type="video/mp4" width="auto" controls></video>
+				</div>
+				<div class="form-wrapper col-md-5 col-xs-12">
+					<h3 class="text-center video-upload-form-header">Video Information</h3>
+					{{#autoForm collection="Videos" autocomplete="off" id="video-form" type="insert"}}
+						<fieldset>
+							{{> afQuickField name='name'}}
+							{{> afQuickField name='author'}}
+							{{> afQuickField name='server'}}
+							{{> afQuickField name='type'}}
+							{{> afQuickField name='faction'}}
+							{{> afQuickField name='class'}}
+							{{> afQuickField name='description'}}
+							<h3 class="text-center">Uploads</h3>
+							<h4 class="upload-headers">Standard Definition Video (Required)</h4>
+							<div class="form-group video-upload-input" data-required="true">
+								<label for="video">Upload Video / Paste URL</label>
+								<div class="input-group">
+									<span class="input-group-addon sd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+									<input type="file" class="hidden" id="sd-video-file">
+									{{> afFieldInput name='video' value=videoURL }}
+									<span class="input-group-addon sd-video-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+								</div>
+							</div>
+							{{> progressBar param1="video"}}
+							<span class="sd-help-block hidden">Standard Definition Video is required</span>
+							<h4 class="upload-headers">High Definition Video (Recommended)</h4>
+							<div class="form-group hd-video-upload-input">
+								<label for="video">Upload Video / Paste URL</label>
+								<div class="input-group">
+									<span class="input-group-addon hd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+									<input type="file" class="hidden" id="hd-video-file">
+									{{> afFieldInput name='hdvideo' value=hdVideoURL }}
+									<span class="input-group-addon hd-video-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+								</div>
+							</div>
+							{{> progressBar param1="hd-video"}}
+							<h4 class="upload-headers">Video Poster (Required)</h4>
+							<div class="form-group poster-upload-input" data-required="true">
+								<label for="video">Upload Image / Paste URL</label>
+								<div class="input-group">
+									<span class="input-group-addon poster-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+									<input type="file" class="hidden" id="poster-file">
+									{{> afFieldInput name='poster' value=posterURL }}
+									<span class="input-group-addon poster-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+								</div>
+							</div>
+							{{> progressBar param1="poster"}}
+							<span class="vp-help-block hidden">Video Poster is required</span>
+						</fieldset>
+						<button type="reset" class="pull-left btn btn-primary btn-lg btn-danger">Cancel Upload</button>
+						<button type="submit" class="pull-right btn btn-primary btn-lg">Submit Video</button>
+					{{/autoForm}}
+				</div>
+			{{else}}
+				{{> spinner}}
+			{{/if}}
+		</div>
+	{{else}}
+		You must log in to upload videos
+	{{/if}}
+</template>

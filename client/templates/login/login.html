@@ -1,0 +1,61 @@
+<template name="login">
+	<div class="login-wrapper">
+		{{#if loginPage 'register'}}
+			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 register">
+				<div class="logo">
+					<h3 class="text-center">Create Account</h3>
+				</div>
+				
+				<form class="register" autocomplete="off">
+					<div class="form-group col-xs-12">
+						<label for="username">Username</label>
+						<input type="text" class="username form-control" id="username" autocomplete="off" autofocus>
+					</div>
+					<div class="form-group col-xs-12">
+						<input type="password" class="password form-control" id="password" autocomplete="off" placeholder="New password">
+					</div>
+					<div class="form-group col-xs-12">
+						<input type="password" class="confirm-password form-control" id="confirm-password" autocomplete="off" placeholder="Confirm password">
+					</div>
+					<h4 class="text-center">Choose Faction</h4>
+					<div class="faction-select col-xs-12">
+						<div class="col-xs-6">
+							<div class="btn btn-default alliance-button"></div>
+						</div>
+						<div class="col-xs-6">
+							<div class="btn btn-default horde-button"></div>
+						</div>
+					</div>
+					<div class="form-buttons">
+						<button class="btn btn-default btn-signup col-xs-12" type="submit">CREATE ACCOUNT</button>
+					</div>
+					<div class="return-login text-center">
+						<span class="text-center"><a href="" class="login-to-account">Already have an account? Login here.</a></span>
+					</div>
+				</form>
+			</div>
+		{{else}}
+			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 login">
+				<div class="logo">
+					<h3 class="text-center">Elysium Movies</h3>
+				</div>
+				
+				<form class="login" autocomplete="off">
+					<div class="form-group col-xs-12">
+						<label for="username">Username</label>
+						<input type="text" class="username form-control" id="username" autocomplete="off" autofocus>
+					</div>
+					<div class="form-group col-xs-12">
+						<input type="password" class="form-control password" id="password" autocomplete="off" placeholder="Password">
+					</div>
+					<div class="form-buttons">
+						<button class="btn btn-default btn-login col-xs-12" type="submit">LOGIN</button>
+					</div>
+					<div class="create-account text-center">
+						<span class="text-center"><a href="" class="register-to-site">Create new account.</a></span>
+					</div>
+				</form>
+			</div>
+		{{/if}}
+	</div>
+</template>

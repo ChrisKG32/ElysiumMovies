@@ -1,0 +1,87 @@
+<template name="video">
+	{{#with param}}
+	<div class="video col-xs-12">
+		<div class="video-wrapper text-center col-xs-12">
+			{{#if Template.subscriptionsReady}}
+				<h2 class="text-center page-header">{{name}} by {{authorUsername}}</h2>
+				{{#if youtubeVideo}}
+					<iframe src="{{youtubeEmbed}}" frameborder="0" allowfullscreen></iframe>
+				{{else}}
+					<video id="video_1" class="video-preview" src="{{qualityType}}" poster="{{poster}}" type="video/mp4" controls data-setup="{}"></video>
+					<div class="definitions">
+						<span class="definition-btn sd-button active">SD Video</span>
+						<span class="definition-btn hd-button">HD Video</span>
+					</div>
+				{{/if}}
+			{{else}}
+				{{> spinner}}
+			{{/if}}
+			
+			
+		</div>
+		<div class="video-details col-xs-12">
+			{{#if Template.subscriptionsReady}}
+				<h3 class="text-center header">Video Details</h3>
+				<div class="data-wrapper col-xs-12 col-md-6">
+					<li class="col-xs-12">Server: {{server}}</li>
+					<li class="col-xs-12">Type: {{type}}</li>
+					<li class="col-xs-12">Faction: {{faction}}</li>
+					<li class="col-xs-12">Class: {{class}}</li>
+				</div>
+				<div class="desc-wrapper col-xs-12 col-md-6">
+					<p style="margin-top: 0;">Description: <br>{{description}}</p>
+				</div>
+			{{else}}
+				{{> spinner}}
+			{{/if}}
+		</div>
+		<div class="comments-wrapper col-xs-12 text-center">
+			{{#if Template.subscriptionsReady}}
+				{{#if currentUser}}
+					<div class="self-comment-wrapper col-xs-12">
+						<div class="self-avatar-wrapper col-xs-2 hidden-xs">
+							<img src="{{userAvatar}}" alt="" height="100px" width="100px">
+							<h4 class="text-center">{{selfUsername}}</h4>
+						</div>
+						<div class="form-group col-xs-12 col-sm-10 user-comment text-right">
+							<h3 class="text-left">Comment</h3>
+							<textarea class="form-control" video-id="{{_id}}" placeholder="Leave a comment..." name="comment" id="comment" cols="30" rows="5"></textarea>
+							<button class="submit-comment btn btn-primary btn-lg">Comment</button>
+						</div>
+					</div>
+				{{/if}}
+				
+				{{#if commentsList}}
+					<div class="comments-list col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  no-gutter">
+						{{#unless currentUser}}
+							<div class="not-logged-in">
+								<h3 class="text-left">Comments</h3>
+								<div class="login-to-post">
+									<button class="btn btn-default"><a href="/login">Please login to comment</a></button>
+								</div>
+							</div>
+						{{/unless}}
+						{{#each commentsList}}
+							<div class="new-comment-wrapper col-xs-12">
+								<div class="inner-comment-wrapper col-xs-12">
+									<h4>{{username}} - {{timeCommented}}</h4>
+									<p class="text-left">{{comment}}</p>
+									<img src="{{avatar}}" alt="">	
+								</div>				
+							</div>
+						{{/each}}
+					</div>
+					{{#unless maxComments}}
+						<div class="load-more-comments col-xs-12">
+							<button class="btn btn-default btn-lg"><a href="">Show more comments...</a></button>
+						</div>
+					{{/unless}}
+				{{/if}}
+			{{else}}
+				{{> spinner}}
+			{{/if}}
+
+		</div>
+	</div>
+	{{/with}}
+</template>

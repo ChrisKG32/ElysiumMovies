@@ -1,0 +1,31 @@
+@import '../../../stylesheets/placeholders/_variables.scss';
+
+.new-videos {
+
+	min-height: calc((55vh + 25px) - (#{$navbar-height}));
+	@include templateStyle();
+	margin-bottom: 15px;
+	padding-top: 10px;
+
+	
+	img {
+		margin-bottom: 5px !important;
+	}
+
+	ul {
+		padding-right: 0;
+
+		li.new-item {
+			a {
+				color: black;
+				text-decoration: none;
+				cursor: pointer;
+			}
+			&:hover {
+				background-color: #f1f1f1;
+			}
+		}
+	}
+}
+
+

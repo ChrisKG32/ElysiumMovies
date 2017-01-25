@@ -35,7 +35,9 @@ Meteor.methods({
 		return this.connection.clientAddress;	
 	},
 	viewCount:function(clientIP, videoId){
-		Videos.update({_id: videoId}, {$addToSet: {views: clientIP}});
+		Videos.update({_id: videoId}, {$push: {views: clientIP}});
+		var newViewCount = Videos.findOne({_id: videoId}).views;
+		Videos.update({_id: videoId}, {$set: {viewCount: newViewCount.length}});
 	},
 	createAccount:function(data){
 		return Accounts.createUser({

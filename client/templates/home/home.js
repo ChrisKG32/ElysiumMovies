@@ -33,5 +33,5 @@ Template.home.onCreated(function(){
 });
 
 Template.home.onRendered(function(){
-	
+	Session.set('popularVids', Videos.find({server: serverSelected.get()}, {sort: {viewCount: -1}, limit: 4}).fetch());
 });

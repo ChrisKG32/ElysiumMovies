@@ -52,7 +52,15 @@ Template.videoCategories.helpers({
 			rowsPerPage: 10,
 			showFilter: true,
 			fields: [
-				{key: 'name', label: 'Name', headerClass: 'text-left', cellClass: 'text-left video-name'},
+				{key: 'name', label: 'Name', headerClass: 'text-left', cellClass: 'text-left video-name',
+					fn:function(value, object, key){
+						if (!!value && value.length > 25){
+							return value.substr(0, 25) + '...'
+						} else {
+							return value
+						}
+					}
+				},
 				{key: 'author', label: 'Poster', headerClass: 'text-left', cellClass: 'text-left',
 					fn:function(value, object, key){
 						if (!!value){
@@ -66,23 +74,24 @@ Template.videoCategories.helpers({
 				{key: 'type', label: 'Type', headerClass: 'text-center', cellClass: 'text-center'},
 				{key: 'faction', label: 'Faction', headerClass: 'text-center', cellClass: 'text-center'},
 				{key: 'class', label: 'Class', headerClass: 'text-center', cellClass: 'text-center'},
-				{key: 'views', label: 'Views', headerClass: 'text-center', cellClass: 'text-center', 
+				{key: 'viewCount', label: 'Views', headerClass: 'text-center', cellClass: 'text-center', 
 					fn:function(value, object, key){
-						if (!!value){
-							return value.length
-						} else {
+						if (!value){
 							return 0
+						} else {
+							return value
 						}
 						
 					}
 				},
 				{key: 'likes', label: 'Likes', headerClass: 'text-center', cellClass: 'text-center', 
 					fn:function(value, object, key){
-						if (!!value){
-							return value.length
-						} else {
+						if (!value){
 							return 0
+						} else {
+							return value
 						}
+						
 					}
 				}
 			]

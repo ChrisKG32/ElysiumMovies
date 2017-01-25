@@ -1,8 +1,20 @@
 @import '../../stylesheets/placeholders/_variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body, html {
 	min-height: 50vh;
+	
+
+}
+body {
 	background-color: $body-background-color;
+	background: url('/images/wow-poster.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+
 }
 
 .page-wrapper {

@@ -18,6 +18,8 @@
 					<li class="navbar-server"><a class="server-name" id="Darrowshire" href="">Darrowshire</a></li>
 					<li class="navbar-server"><a class="server-name" id="Elysium" href="">Elysium</a></li>
 					<li class="navbar-server"><a class="server-name" id="Zeth'Kur" href="">Zeth'Kur</a></li>
+					<li class="navbar-server"><a class="server-name" id="Zeth'Kur" href="">Classic</a></li>
+					<li class="navbar-server"><a class="server-name" id="Zeth'Kur" href="">About</a></li>
 					<li class="navbar-donate">
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick">
@@ -31,6 +33,7 @@
 				<ul class="nav navbar-nav navbar-right">
 				{{#if currentUser}}
 					<li><a href="/upload"><span class="fa fa-cloud-upload"></span> Upload</a></li>
+					<li><a href="/upload"><span class="fa fa-user"></span> Profile</a></li>
 					<li class="logout-button"><a href="" class="log-out"><span class="fa fa-sign-out"></span> Log Out</a></li>
 				{{else}}
 					<li class="login-page signup-button"><a href="/login"><span class="fa fa-user"></span> Sign Up</a></li>

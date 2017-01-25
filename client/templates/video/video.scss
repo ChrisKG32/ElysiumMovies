@@ -5,9 +5,11 @@
 
 	//VIDEO ASPECT RATIO ADJUSTMENT BASED ON VIEWPORT SIZE
 		@media only screen and (min-width: 320px){
+
 			.video-wrapper {
+				min-height: calc((40vh - (#{$navbar-height}));
 				width: 100%;
-				//height: calc(80vw/1.5);
+
 				padding: 10px;
 
 				video, iframe {
@@ -19,7 +21,7 @@
 		@media only screen and (min-width: 768px){
 			.video-wrapper {
 				width: 100%;
-				//height: calc(80vw/1.5);
+				min-height: calc((65vh + 15px) - (#{$navbar-height}));
 				padding: 10px;
 				video, iframe {
 					width: 100%;
@@ -30,7 +32,7 @@
 		@media only screen and (min-width: 992px){
 			.video-wrapper {
 				width: 100%;
-				//height: calc(60vw/1.5);
+
 				padding: 10px;
 				video, iframe {
 					width: 80%;
@@ -41,7 +43,7 @@
 		@media only screen and (min-width: 1200px){
 			.video-wrapper {
 				width: 100%;
-				//height: calc(50vw/1.5);
+
 				padding: 10px;
 
 				video, iframe {
@@ -53,7 +55,7 @@
 		@media only screen and (min-width: 1600px){
 			.video-wrapper {
 				width: 100%;
-				//height: calc(40vw/1.5);
+	
 				padding: 10px;
 
 				video, iframe {
@@ -70,7 +72,8 @@
 		@include templateStyle();
 		padding-bottom: 25px;
 		margin-bottom: 15px;
-		min-height: calc((65vh - (#{$navbar-height}));
+		
+	
 
 		.page-header {
 			margin-top: 10px;
@@ -157,6 +160,7 @@
 			padding-bottom: 15px;
 			border-radius: 5px;
 			border: 1px solid $table-border-color;
+			margin-bottom: 20px;
 
 
 			.new-comment-wrapper {

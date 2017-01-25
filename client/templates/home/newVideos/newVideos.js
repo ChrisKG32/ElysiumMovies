@@ -10,13 +10,29 @@ Template.newVideos.helpers({
 		var newVids = Videos.find({}, {sort: {createdAt: -1}, limit: 10}).fetch();
 
 		newVids = newVids.filter(function(entry){
-			entry.views = entry && entry.views && entry.views.length;
-			entry.likes = entry && entry.likes && entry.likes.length;
+			if (!entry.viewCount) {
+				entry.viewCount = 0;
+			}
+			if (!entry.likeCount) {
+				entry.likeCount = 0;
+			}
+
 			entry.author = Profiles.findOne({userId: entry.author}) && Profiles.findOne({userId: entry.author}).username
+
 			return true
 		});
 		return newVids
 	},
+	name:function(){
+
+		var name = this.name;
+		if (!!name && name.length > 20){
+			return name.substr(0, 20) + '...'
+		} else {
+			return name
+		}
+		
+	}
 });
 
 Template.newVideos.onCreated(function(){

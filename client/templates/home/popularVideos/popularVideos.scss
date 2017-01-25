@@ -1,5 +1,5 @@
 @import '../../../stylesheets/placeholders/_variables.scss';
-
+@import '../../../stylesheets/placeholders/_placeholders.scss';
 
 .popular-videos {
 	min-height: calc(45vh - #{$navbar-height});
@@ -18,63 +18,93 @@
 		margin: 0 auto;
 	}
 
-	.img-container {
-		position: relative;
-		cursor: pointer;
-		max-height: 75%;
-		
-		div.video-preview {
-			position: relative;
-			border: 1px solid black;
-			max-width: 100%;
-			border-radius: 5px;
-			min-height: 175px;
-			background-size: cover;
-			background-position: center;
-			height: 200px;
-			width: 300px;
+	.spotlight-container {
 
-			&:after {
-				content: '';
-				position: absolute;
-				top:0;
-				right:0;
-				bottom:0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: rgba(0,0,0,0.5);
+		padding-top: 40px;
+		padding-bottom: 40px;
+		
+		
+		
+
+		.img-container {
+			position: relative;
+			cursor: pointer;
+			max-height: 75%;
+			@media only screen and (max-width: 768px){
+				padding-left: 0;
+				padding-right: 0;
+			}
+			
+			div.video-preview {
+				display: inline-block;
+				position: relative;
+				max-width: 100%;
+				border-radius: 5px;
+				min-height: 175px;
+				background-size: cover;
+				background-position: center;
+				height: 200px;
+				width: 300px;
+				box-shadow: 0px 0px 20px rgb(50,50,50);
+
+				&:after {
+					border-radius: 5px;
+					content: '';
+					position: absolute;
+					top:0;
+					right:0;
+					bottom:0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.2), rgba(0,0,0,0.2), rgba(0,0,0,0.9));
+				}
+				span {
+					position: absolute;
+					z-index: 2;
+					color: rgb(235,235,235);
+					text-shadow: 0px 0px 10px black;
+					font-size: 125%;
+
+
+
+				}
+				span.fa-eye {
+					bottom: 10px;
+					left: 15px;
+				} 
+				span.fa-star {
+					bottom: 10px;
+					right: 15px;
+				}
+				span.fa-comment {
+					bottom: 10px;
+					right: 0;
+					left: 0;
+
+					&:hover {
+						color: white;
+						text-shadow: 0px 0px 10px white;
+					}
+				}
+				span.vid-name {
+					font-family: 'Open Sans', sans-serif;
+					font-size: 150%;
+					top: 5px;
+					right: 0px;
+					left: 0px;
+					margin-left: 10px;
+					margin-right: 10px;
+				}
+				span.vid-author {
+					font-size: 125%;
+					bottom: 40px;
+					right: 0px;
+					left: 0px;
+				}
 			}
 		}
-
-		span.fa-eye {
-			position: absolute;
-			z-index: 99;
-			color: white;
-			top: 15px;
-			right: 20px;
-		}
-		span.fa-star {
-			position: absolute;
-			z-index: 99;
-			color: white;
-			bottom: 15px;
-			right: 20px;
-		}
-		span.vid-name {
-			position: absolute;
-			z-index: 99;
-			font-size: 150%;
-			color: white;
-			top: 5px;
-			right: 0px;
-			left: 0px;
-			margin-right: 50px;
-			margin-left: 50px;
-		}
 	}
-
-
 }
 
 

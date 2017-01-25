@@ -50,17 +50,17 @@
 						</div>
 					</div>
 				{{/if}}
-				
+				{{#unless currentUser}}
+					<div class="not-logged-in">
+						<h3 class="text-left">Comments</h3>
+						<div class="login-to-post">
+							<a class="btn btn-default" href="/login">Please login to comment</a>
+						</div>
+					</div>
+				{{/unless}}
+
 				{{#if commentsList}}
 					<div class="comments-list col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  no-gutter">
-						{{#unless currentUser}}
-							<div class="not-logged-in">
-								<h3 class="text-left">Comments</h3>
-								<div class="login-to-post">
-									<button class="btn btn-default"><a href="/login">Please login to comment</a></button>
-								</div>
-							</div>
-						{{/unless}}
 						{{#each commentsList}}
 							<div class="new-comment-wrapper col-xs-12">
 								<div class="inner-comment-wrapper col-xs-12">
@@ -71,12 +71,13 @@
 							</div>
 						{{/each}}
 					</div>
-					{{#unless maxComments}}
-						<div class="load-more-comments col-xs-12">
-							<button class="btn btn-default btn-lg"><a href="">Show more comments...</a></button>
-						</div>
-					{{/unless}}
 				{{/if}}
+
+				{{#unless maxComments}}
+					<div class="load-more-comments col-xs-12">
+						<a class="btn btn-default btn-lg">Show more comments...</a>
+					</div>
+				{{/unless}}
 			{{else}}
 				{{> spinner}}
 			{{/if}}

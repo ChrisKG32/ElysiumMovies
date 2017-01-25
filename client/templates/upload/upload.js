@@ -30,7 +30,7 @@ Template.upload.events({
 		videoURL.set(url);
 		tmpl.videoCheck.set(false);
 		tmpl.videoCheck.set(url);
-		console.log(url);
+
 	},
 	'click .hd-video-preview':function(e, tmpl){
 		var url = $('input[data-schema-key="hdvideo"]').val();

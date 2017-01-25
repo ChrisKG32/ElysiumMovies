@@ -31,7 +31,7 @@ Template.video.events({
 			});
 		}
 	},
-	'click .load-more-comments button':function(e, tmpl){
+	'click .load-more-comments a':function(e, tmpl){
 		tmpl.commentMax.set(tmpl.commentMax.get() + 5);
 	}
 });
@@ -164,6 +164,28 @@ Template.video.onCreated(function(){
 });
 
 Template.video.onRendered(function(){
-	Meteor.call('viewCount', Session.get('clientIP'), FlowRouter.getParam('id'));
+	
+
+	Meteor.setTimeout(function(){
+		var viewed = Session.get(FlowRouter.getParam("id"));
+		if (viewed){
+			var now = new Date();
+
+			if ((now - viewed) > 600000){
+
+				Meteor.call('viewCount', Session.get('clientIP'), FlowRouter.getParam('id'), function(){
+					Session.set(FlowRouter.getParam("id"), new Date());
+				});
+			} else {
+
+			}
+		} else {
+
+			Meteor.call('viewCount', Session.get('clientIP'), FlowRouter.getParam('id'), function(){
+				Session.set(FlowRouter.getParam("id"), new Date());
+			});
+		}
+	}, 5000);
+	
 
 });

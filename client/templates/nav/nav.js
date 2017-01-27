@@ -1,10 +1,17 @@
 Template.nav.events({
-	'click .server-name':function(e, tmpl){
+	'click .server-name, click .navbar-link':function(e, tmpl){
 		var currentTarget = $(e.currentTarget);
-		serverSelected.set(currentTarget.text());
-		$('.navbar-server, .navbar-donate').removeClass('active');
-		currentTarget.parent().addClass('active');
-		FlowRouter.go('home');
+		if (currentTarget.hasClass('server-name')){
+			serverSelected.set(currentTarget.text());
+		} else if (currentTarget.hasClass('classic')){
+			serverSelected.set('Classic');
+		} else if (currentTarget.hasClass('about')){
+			serverSelected.set('About');
+		}
+		if (FlowRouter.getRouteName() !== 'home'){
+			FlowRouter.go('home');
+		}
+		
 	},
 	'click .navbar-brand':function(e, tmpl){
 		serverSelected.set(false);
@@ -25,6 +32,25 @@ Template.nav.events({
 		}
 	}
 });
+
+Template.nav.helpers({
+	serverName:function(){
+		let serverName = serverSelected.get();
+		if (serverName && serverName !== 'Classic' && serverName !== 'About'){
+			return serverName
+		} else {
+			return 'Server'
+		}
+	},
+	activeLink:function(param1){
+		let serverName = serverSelected.get();
+		if (serverName === param1){
+			return 'active'
+		} else {
+			return ''
+		}
+	}
+})
 
 Template.nav.onCreated(function(){
 	serverSelected = new ReactiveVar(false);

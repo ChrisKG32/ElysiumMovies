@@ -62,15 +62,32 @@ nav.navbar-inverse, nav.navbar-default {
             margin-right: 20px;
         }
     }
-    .navbar-nav li a {
+    .navbar-nav li.navbar-link a, .dropdown-toggle {
         padding-top: 25px;
         padding-bottom: 25px;
         font-size: 125%;
 
         .fa-heart {
             font-size: 75%;
-            }
+        }
+    }
+    .dropdown {
+        a.dropdown-toggle {
+            background-color: transparent !important;
+        }
+        .dropdown-menu {
+            padding-top: 0;
+            padding-bottom: 0;
+            li {
+                a {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-left: 10px;
+                    padding-right: 10px;
 
+                }
+            }
+        }
     }
 
 

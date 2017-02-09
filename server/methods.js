@@ -46,20 +46,24 @@ Meteor.methods({
 		});
 	},
 	createProfile:function(data2){
-		if (data2.faction === 'alliance'){
+
+		if (data2.faction && data2.faction === 'alliance'){
 			var avatar = '/images/alliance_symbol.png';
-		} else if (data2.faction === 'horde'){
+		} else if (data2.faction && data2.faction === 'horde'){
 			var avatar = '/images/horde_symbol.png';
 		}
 
 		
 		if (!Profiles.findOne({username: data2.username})) {
-			Profiles.insert({username: data2.username, userId: data2.userId, avatar: avatar});
+			Profiles.insert({username: data2.username, userId: data2.userId, avatar: avatar, server: data2.server});
 		}
 	},
 	newComment:function(data){
 
 		Comments.insert({userId: data.userId, comment: data.comment, videoId: data.videoId});
 
+	},
+	deleteVideo:function(data){
+		Videos.remove(data._id);
 	}
 });

@@ -1,0 +1,27 @@
+<template name="popup">
+	<div class="dim-page">
+		<div class="modal-wrapper">
+			<header>
+				<h4 class="modal-head">
+					Delete Entry:
+					<i class="fa fa-close"></i>
+					<br>
+					{{#with selectedIngredient}}
+						<small>
+							{{name}}
+						</small>
+					{{/with}}
+				</h4>
+			</header>
+			<h4 >
+				Are you sure?
+			</h4>
+			<button class="cancel-delete btn btn-default">
+				Cancel
+			</button>
+			<button class="delete btn btn-danger">
+				Delete
+			</button>
+		</div>
+	</div>
+</template>

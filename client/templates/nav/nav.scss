@@ -72,6 +72,9 @@ nav.navbar-inverse, nav.navbar-default {
         }
     }
     .dropdown {
+        &.active {
+            background-color: #e7e7e7;
+        }
         a.dropdown-toggle {
             background-color: transparent !important;
         }
@@ -124,6 +127,8 @@ nav.navbar-inverse, nav.navbar-default {
 	.navbar-server.active, .navbar-donate.active {
 		font-weight: bold !important;
 	}
+
+    
 
 }
 

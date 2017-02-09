@@ -39,3 +39,6 @@ accounts-ui
 linguahouse:videojs
 session
 momentjs:moment
+aldeed:template-extension
+useraccounts:bootstrap
+email

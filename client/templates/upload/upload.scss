@@ -38,7 +38,7 @@
 	
 
 
-		.sd-video-select, .hd-video-select, .sd-poster-select, .poster-preview, .sd-video-preview, .hd-video-preview {
+		.sd-video-select, .hd-video-select, .sd-poster-select, .poster-preview, .poster-select, .sd-video-preview, .hd-video-preview {
 			&:hover {
 				cursor: pointer;
 			}
@@ -71,9 +71,11 @@
 		display: block;
 	}
 	
-	
-	
 	margin-bottom: 100px;
+}
+
+h2.not-logged-in {
+	margin-top: 10%;
 }
 
 

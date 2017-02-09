@@ -1,3 +1,144 @@
+@import '../../stylesheets/placeholders/_variables.scss';
+@import '../../stylesheets/placeholders/_placeholders.scss';
+
 .profile {
-	
+	h3 {
+		margin-top: 0;
+	}
+	.account-details {
+		min-height: calc(45vh - #{$navbar-height});
+		margin-bottom: 15px;
+		padding: 25px;
+		min-height: 250px;
+		box-shadow: $div-box-shadow;
+		background-color: $div-background-color;
+		border: $div-border;
+
+		
+
+		form.view-profile {
+			margin: 0 auto;
+			max-width: 400px;
+		}
+	}
+	.videos-list {
+
+
+		min-height: calc((55vh + 25px) - (#{$navbar-height}));
+		padding: 25px 10px;
+		box-shadow: $div-box-shadow;
+		background-color: $div-background-color;
+		border: $div-border;
+
+		.table-wrapper {
+			//Layout
+				overflow-x: scroll;
+
+			//Padding
+				padding-top: 10px;
+			
+			//Style
+			background-color: $table-background-color;
+			border-right: 1px solid $table-border-color;
+			border-left: 1px solid $table-border-color;
+			border-bottom: 1px solid $table-border-color;
+
+			.video-name {
+				color: black;
+				cursor: pointer;
+			}
+			.edit-video {
+				font-weight: bold;
+				color: #5cb85c;
+				cursor: pointer;
+			}
+			.delete-video {
+				font-weight: bold;
+				color: #d9534f;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.upload {
+
+
+		@include templateStyle();
+		overflow: auto;
+		padding-bottom: 15px;
+		
+
+		img.header-img {
+			display: block;
+			margin: 0 auto 25px auto;
+			padding-top: 25px;
+			padding-bottom: 25px;
+
+		}
+
+		.video-preview-wrapper {
+			padding-left: 60px;
+			padding-right: 60px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			background-color: $div-background-color;
+
+
+
+			video, iframe {
+				height: 250px;
+				width: 100%;
+				border-radius: 10px;
+				box-shadow: 0px 0px 35px rgb(220,220,220);
+			}
+
+		}
+		.form-wrapper {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		
+
+
+			.sd-video-select, .hd-video-select, .sd-poster-select, .poster-preview, .poster-select, .sd-video-preview, .hd-video-preview {
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			.video-upload-input, .poster-upload-input, .hd-video-upload-input {
+				margin-bottom: 5px;
+			}
+
+			fieldset {
+				margin-bottom: 25px;
+			}
+		}
+
+		.upload-headers {
+			margin-top: 30px;
+		}
+
+		.progress {
+			margin-bottom: 0;
+		}
+
+		input[name="video"].danger, input[name="poster"].danger {
+			border-color: #a94442;
+		}
+		.sd-help-block.danger, .vp-help-block.danger, label[for="video"].danger, label[for="poster"].danger {
+			color: #a94442;
+		}
+
+		.sd-help-block, .vp-help-block {
+			display: block;
+		}
+		
+		margin-bottom: 100px;
+		
+
+		h2.not-logged-in {
+			margin-top: 10%;
+		}
+	}
 }
+
+

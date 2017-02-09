@@ -27,9 +27,9 @@
 							{{> afQuickField name='class'}}
 							{{> afQuickField name='description'}}
 							<h3 class="text-center">Uploads</h3>
-							<h4 class="upload-headers">Standard Definition Video (Required)</h4>
+							<h4 class="upload-headers">Standard Video (Required)</h4>
 							<div class="form-group video-upload-input" data-required="true">
-								<label for="video">Upload Video / Paste URL</label>
+								<label for="video">Upload Video / Paste Youtube URL</label>
 								<div class="input-group">
 									<span class="input-group-addon sd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
 									<input type="file" class="hidden" id="sd-video-file">
@@ -38,18 +38,20 @@
 								</div>
 							</div>
 							{{> progressBar param1="video"}}
-							<span class="sd-help-block hidden">Standard Definition Video is required</span>
-							<h4 class="upload-headers">High Definition Video (Recommended)</h4>
-							<div class="form-group hd-video-upload-input">
-								<label for="video">Upload Video / Paste URL</label>
-								<div class="input-group">
-									<span class="input-group-addon hd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
-									<input type="file" class="hidden" id="hd-video-file">
-									{{> afFieldInput name='hdvideo' value=hdVideoURL }}
-									<span class="input-group-addon hd-video-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+							<span class="sd-help-block hidden">Standard Video is required</span>
+							{{#unless youtubeVideo}}
+								<h4 class="upload-headers">High Definition Video (Only if not using Youtube)</h4>
+								<div class="form-group hd-video-upload-input">
+									<label for="video">Upload Video / Paste URL</label>
+									<div class="input-group">
+										<span class="input-group-addon hd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+										<input type="file" class="hidden" id="hd-video-file">
+										{{> afFieldInput name='hdvideo' value=hdVideoURL }}
+										<span class="input-group-addon hd-video-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+									</div>
 								</div>
-							</div>
-							{{> progressBar param1="hd-video"}}
+								{{> progressBar param1="hd-video"}}
+							{{/unless}}
 							<h4 class="upload-headers">Video Poster (Required)</h4>
 							<div class="form-group poster-upload-input" data-required="true">
 								<label for="video">Upload Image / Paste URL</label>
@@ -72,6 +74,6 @@
 			{{/if}}
 		</div>
 	{{else}}
-		You must log in to upload videos
+		<h2 class="not-logged-in text-center">You must <a href="/login">login</a> to upload videos.</h2>
 	{{/if}}
 </template>

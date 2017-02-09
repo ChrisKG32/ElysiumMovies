@@ -30,8 +30,18 @@ Template.home.onCreated(function(){
 	this.subscribe('profiles');
 	*/
 
+	
 });
 
 Template.home.onRendered(function(){
-	Session.set('popularVids', Videos.find({server: serverSelected.get()}, {sort: {viewCount: -1}, limit: 4}).fetch());
+
+	Tracker.autorun(function(){
+		if (serverSelected.get() === undefined || serverSelected.get() === false){
+			var userProfile = Profiles.findOne({userId: Meteor.userId()});
+			var userServer = userProfile && userProfile.server;
+			serverSelected.set(userServer);
+		}
+	});
+
+
 });

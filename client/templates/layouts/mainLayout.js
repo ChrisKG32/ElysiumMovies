@@ -7,4 +7,3 @@ Template.mainLayout.onCreated(function(){
 	this.subscribe('videos');
 });
 
-

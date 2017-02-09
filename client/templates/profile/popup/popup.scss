@@ -1,0 +1,43 @@
+.dim-page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 999;
+	.modal-wrapper {
+		width: 250px;
+		position: absolute;
+		padding: 10px;
+		display: inline-block;
+		border-radius: 8px;
+		border: 1px solid black;
+		transform: translate(calc(50vw - 125px), calc(50vh - 75px));
+		z-index: 99;
+		background-color: white;
+
+		h4.modal-head {
+			text-align: center;
+			margin-top: 0;
+			margin-bottom: 25px;
+
+			i.fa-close {
+				position: absolute;
+				top:5px;
+				right: 5px;
+				cursor: pointer;
+			}
+		}
+		h4 {
+			text-align: center;
+		}
+		button.btn-danger {
+			float: right;
+			margin-right: 25px;
+		}
+		button.btn-default {
+			margin-left: 25px;
+		}
+	}
+}

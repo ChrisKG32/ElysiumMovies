@@ -2,12 +2,15 @@
 
 Template.popularVideos.helpers({
 	spotlight: function(param1){
-
-		var popularVids = Session.get('popularVids');
-		if (popularVids && popularVids.length > 0){
-			return popularVids
+		if (serverSelected.get() && serverSelected.get() !== 'Any Server'){
+			var filteredVideos = Videos.find({server: serverSelected.get()}, {sort: {viewCount: -1}, limit: 4}).fetch();
+			if (filteredVideos && filteredVideos.length > 0){
+				return filteredVideos
+			} else {
+				return false
+			}
 		} else {
-			return Videos.find({server: serverSelected.get()}, {sort: {viewCount: -1}, limit: 4})
+			return Videos.find({}, {sort: {viewCount: -1}, limit: 4});
 		}
 		
 	},
@@ -68,6 +71,14 @@ Template.popularVideos.helpers({
 
 			return 'col-xs-10 col-sm-6 col-md-4 col-lg-3 hidden-sm hidden-xs hidden-md';
 		}
+	},
+	serverName:function(param1){
+		if (serverSelected.get()){
+			return ' for ' + serverSelected.get()
+		} else {
+			return ''
+		}
+		
 	}
 });
 

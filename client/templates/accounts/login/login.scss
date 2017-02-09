@@ -1,0 +1,173 @@
+/*****************************************************************************/
+/* Login: Style */
+/*****************************************************************************/
+
+@import '../../../stylesheets/placeholders/_variables.scss';
+
+div.at-form {
+	max-width: 400px;
+	p {
+		text-align: center;
+	}
+
+}
+/*
+.faction-select {
+	text-align: center;
+	div.btn {
+		width: 100px;
+		height: 100px;
+		background-color: $div-background-color;
+		border-radius: 10px;
+		box-shadow: 0px 1px 1px rgb(150,150,150);
+		cursor: pointer;
+
+		&.selected {
+			background-color: rgb(210,210,210) !important;
+			border: 2px solid #6495ED;
+		}
+	}
+
+	div.btn.alliance-button {
+		background: url('/images/alliance_symbol.png');
+		background-size: cover;
+	}
+
+	div.btn.horde-button {
+		background: url('/images/horde_symbol.png');
+		background-size: cover;
+	}
+	margin-bottom: 20px;
+}*/
+
+/*
+	.login-wrapper {
+		padding-top: 50px;
+
+		.logo {
+
+			padding-top: 25px;
+			height: 100px;
+
+			h2 {
+				color: rgb(25,25,25);
+				text-align: center;
+			}
+		}
+		.form-buttons {
+			padding: 0px 15px;
+			button {
+				color: rgb(100,100,100);
+				font-weight: bold;
+				height: 40px;
+				background-color: $div-background-color;
+				border: none;
+				box-shadow: 0px 1px 1px rgb(150,150,150);
+				margin-bottom: 15px;
+
+
+				&:focus {
+					box-shadow: inset 0px 1px 1px rgb(150,150,150);
+				}
+				
+			}
+		}
+
+		form.login, form.register {
+
+			.faction-select {
+				text-align: center;
+				div.btn {
+					width: 100px;
+					height: 100px;
+					background-color: $div-background-color;
+					border-radius: 10px;
+					box-shadow: 0px 1px 1px rgb(150,150,150);
+					cursor: pointer;
+
+					&.selected {
+						background-color: rgb(210,210,210) !important;
+						border: 2px solid #6495ED;
+					}
+				}
+
+				div.btn.alliance-button {
+					background: url('/images/alliance_symbol.png');
+					background-size: cover;
+				}
+
+				div.btn.horde-button {
+					background: url('/images/horde_symbol.png');
+					background-size: cover;
+				}
+				margin-bottom: 20px;
+			}
+
+			text-align: center;
+			label {
+				color: rgb(100,100,100);
+				float: left;
+				font-weight: normal;
+				font-size: 90%;
+			}
+
+			input.username, input.password, input.confirm-password {
+				background-color: $body-background-color;
+				color: rgb(100,100,100);
+				font-size: 150%;
+				padding-left: 0;
+				padding-right: 0;
+				border: none;
+				box-shadow: none;
+				border-bottom: 2px solid #9d9d9d;
+				border-radius: 0px;
+				margin-bottom: 25px;
+				&:focus {
+					color: rgb(25,25,25);
+					border-color: rgb(25,25,25);
+				}
+			}
+			
+			span {
+				color: rgb(100,100,100);
+				&:hover {
+					color: #42cef4;
+				}
+			}
+
+			.server-select {
+				margin-bottom: 55px;
+			}
+
+		}
+		ul {
+			text-align: start;
+			list-style: none;
+			li {
+				font-size: 120%;
+			}
+		}
+		.account-type {
+			text-align: center;
+			height: 300px;
+			h3 {
+				border-bottom: 2px solid #9d9d9d;
+				margin-bottom: 25px;
+				span.fa {
+					color: #9d9d9d;
+					transform: translateY(60%);
+				}
+			}
+		}
+		.return-login, .create-account {
+
+			span {
+				&:hover {
+					color: blue;
+					cursor: pointer;
+				}
+			}
+
+		}
+	}
+*/

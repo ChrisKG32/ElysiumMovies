@@ -1,6 +1,8 @@
 @import '../../../stylesheets/placeholders/_variables.scss';
 @import '../../../stylesheets/placeholders/_placeholders.scss';
 
+
+
 .popular-videos {
 	min-height: calc(45vh - #{$navbar-height});
 	//Margins
@@ -13,15 +15,11 @@
 	border-radius: 0;
 	
 
-	img.header-img {
-		display: block;
-		margin: 0 auto;
-	}
-
 	.spotlight-container {
 
 		padding-top: 40px;
 		padding-bottom: 40px;
+		min-height: 300px;
 		
 		
 		
@@ -104,6 +102,10 @@
 				}
 			}
 		}
+	}
+
+	.no-videos {
+		transform: translateY(200%);
 	}
 }
 

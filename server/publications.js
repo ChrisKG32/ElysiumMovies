@@ -1,7 +1,3 @@
-
-
-
-
 Meteor.publish('videos', function(server){
 	if (server){
 		return Videos.find({server: server})

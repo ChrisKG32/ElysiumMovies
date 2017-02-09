@@ -1,5 +1,138 @@
 <template name="profile">
 	<div class="profile">
-		Profile page coming soon...
+		{{#unless editVideo}}
+			<div class="account-details col-xs-12">
+				<h3 class="text-center">Account Details</h3>
+					<form action="" class="view-profile">
+						{{#with currentUser}}
+							<div class="form-group">
+								<label for="username">Username:</label>
+								<input id="username" disabled type="text" class="form-control" value="{{username}}">
+							</div>
+							<div class="form-group">
+								<label for="email">Email:</label>
+								<input id="email" disabled type="text" class="form-control" value="{{emails.[0].address}}">
+							</div>
+							<div class="form-group">
+								<label for="server">Server Preference:</label>
+								<input id="server" disabled type="text" class="form-control" value="{{profile.server}}">
+							</div>
+						{{/with}}
+					</form>
+			</div>
+			<div class="videos-list col-xs-12">
+				<h3 class="text-center">Your Videos</h3>
+				<ul class="nav nav-tabs col-xs-12">
+					<li class="dropdown active class-selector">
+						<a class="dropdown-toggle header-select" data-toggle="dropdown" href="#">
+							{{classSelected}}
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu class-dropdown">
+							<li class="class-select"><a href="">All Classes</a></li>
+							<li class="class-select"><a href="">Druid</a></li>
+							<li class="class-select"><a href="">Hunter</a></li>
+							<li class="class-select"><a href="">Mage</a></li>
+							<li class="class-select"><a href="">Paladin</a></li>
+							<li class="class-select"><a href="">Priest</a></li> 
+							<li class="class-select"><a href="">Rogue</a></li>
+							<li class="class-select"><a href="">Shaman</a></li> 
+							<li class="class-select"><a href="">Warlock</a></li>
+							<li class="class-select"><a href="">Warrior</a></li> 
+						</ul>
+					</li>
+					<li class="category-li {{categorySelected 'PvP'}}"><a href="">PvP</a></li>
+					<li class="category-li {{categorySelected 'PvE'}}"><a href="">PvE</a></li>
+					<li class="category-li {{categorySelected 'Humor'}}"><a href="">Humor</a></li>
+					<li class="category-li {{categorySelected 'Classic'}}"><a href="">Classic</a></li>
+					<li class="category-li {{categorySelected 'Other'}}"><a href="">Other</a></li>
+				</ul>
+				<div class="table-wrapper col-xs-12">
+					{{> reactiveTable id="user-videos" settings=settings}}
+				</div>
+			</div>
+		{{else}}
+			{{#if currentUser}}
+				{{#with editVideo}}
+					<div class="upload">
+						<img src="/images/Upload Video.png" alt="" class="header-img">
+						{{#if Template.subscriptionsReady}}
+							<div class="video-preview-wrapper col-md-7 col-xs-12 pull-right">
+									<h3 class="text-center video-preview-header">SD Video Preview</h3>
+									{{#if youtubeVideo}}
+										<iframe src="{{youtubeEmbed}}" frameborder="0" allowfullscreen></iframe>
+									{{else}}
+										<video class="video-preview" src="{{videoURL}}" type="video/mp4" width="auto" controls></video>
+										<h3 class="text-center video-preview-header">HD Video Preview</h3>
+										<video class="video-preview" src="{{hdVideoURL}}" type="video/mp4" width="auto" controls></video>
+									{{/if}}	
+									<h3 class="text-center poster-preview-header">Poster Preview</h3>
+									<video class="poster-preview" src="" poster="{{posterURL}}" type="video/mp4" width="auto" controls></video>
+							</div>
+							<div class="form-wrapper col-md-5 col-xs-12">
+								<h3 class="text-center video-upload-form-header">Video Information</h3>
+								{{#autoForm collection="Videos" autocomplete="off" id="video-form" doc=this type="update"}}
+									<fieldset>
+										{{> afQuickField name='name'}}
+										{{> afQuickField name='author'}}
+										{{> afQuickField name='server'}}
+										{{> afQuickField name='type'}}
+										{{> afQuickField name='faction'}}
+										{{> afQuickField name='class'}}
+										{{> afQuickField name='description'}}
+										<h3 class="text-center">Uploads</h3>
+										<h4 class="upload-headers">Standard Video (Required)</h4>
+										<div class="form-group video-upload-input" data-required="true">
+											<label for="video">Upload Video / Paste Youtube URL</label>
+											<div class="input-group">
+												<span class="input-group-addon sd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+												<input type="file" class="hidden" id="sd-video-file">
+												{{> afFieldInput name='video' value=videoURL }}
+												<span class="input-group-addon sd-video-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+											</div>
+										</div>
+										{{> progressBar param1="video"}}
+										<span class="sd-help-block hidden">Standard Video is required</span>
+										{{#unless youtubeVideo}}
+											<h4 class="upload-headers">High Definition Video (Only if not using Youtube)</h4>
+											<div class="form-group hd-video-upload-input">
+												<label for="video">Upload Video / Paste URL</label>
+												<div class="input-group">
+													<span class="input-group-addon hd-video-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+													<input type="file" class="hidden" id="hd-video-file">
+													{{> afFieldInput name='hdvideo' value=hdVideoURL }}
+													<span class="input-group-addon hd-video-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+												</div>
+											</div>
+											{{> progressBar param1="hd-video"}}
+										{{/unless}}
+										<h4 class="upload-headers">Video Poster (Required)</h4>
+										<div class="form-group poster-upload-input" data-required="true">
+											<label for="video">Upload Image / Paste URL</label>
+											<div class="input-group">
+												<span class="input-group-addon poster-select"><span class="fa fa-folder-open" aria-hidden="true"></span></span>
+												<input type="file" class="hidden" id="poster-file">
+												{{> afFieldInput name='poster' value=posterURL }}
+												<span class="input-group-addon poster-preview"><span class="fa fa-eye" aria-hidden="true"></span></span>
+											</div>
+										</div>
+										{{> progressBar param1="poster"}}
+										<span class="vp-help-block hidden">Video Poster is required</span>
+									</fieldset>
+									<button type="reset" class="pull-left btn btn-primary btn-lg btn-danger">Cancel Upload</button>
+									<button type="submit" class="pull-right btn btn-primary btn-lg">Submit Video</button>
+								{{/autoForm}}
+							</div>
+						{{else}}
+							{{> spinner}}
+						{{/if}}
+					</div>
+				{{/with}}
+			{{else}}
+				<h2 class="not-logged-in text-center">You must <a href="/login">login</a> to upload videos.</h2>
+			{{/if}}
+
+		{{/unless}}
 	</div>
 </template>
+

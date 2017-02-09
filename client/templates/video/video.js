@@ -88,35 +88,52 @@ Template.video.helpers({
 	youtubeEmbed:function(){
 		var video = this.video;
 
-		if (~video.indexOf('youtube') || ~video.indexOf('youtu.be') || ~video.indexOf('<iframe') || ~video.indexOf('watch?v=')){
+		var typeOne = 'youtu.be/';
+		var typeTwo = 'youtube.com/embed/';
+		var typeThree = 'youtube.com/watch?v=';
 
-			//Youtube link confirmed
+		var youtubeOne = video.indexOf(typeOne) > 0;
+		var youtubeTwo = video.indexOf(typeTwo) > 0;
+		var youtubeThree = video.indexOf(typeThree) > 0;
+		var youtubeId = function(type){
+			var startOfId = video.indexOf(type) + (type.length);
+			var endOfId = function(){
 
-			if (~video.indexOf('watch?v=')){
-				var embed = video.replace('watch?v=', 'embed/');
-			} else if (~video.indexOf('/youtu.be/')){
-				var embed = video.replace('youtu.be', 'www.youtube.com/embed');
-			} else if (~video.indexOf('youtube.com/embed/')){
-				if (~video.indexOf('<iframe')) {
-					var startPath = video.indexOf('src="');
-					var endPath = video.indexOf('frameborder');
-					var embed = video.substr(startPath + 5, (endPath - 2) - (startPath + 5));
+
+				if ((video.substr(startOfId, video.length)).indexOf('&') > 0) {
+					return (video.substr(startOfId, video.length)).indexOf('&')
+				} else if ((video.substr(startOfId, video.length)).indexOf('"') > 0){
+					return (video.substr(startOfId, video.length)).indexOf('"')
 				} else {
-					if (video.indexOf('https://') === 0){
-						var embed = video;
-					} else {
-						var embed = video.substr(video.indexOf('https:/'), video.length);
-					}
+					return (-1)
 				}
 			}
-			return embed
-		} else {
 
-			// Other than youtube link. Just use the raw link.
+			if (endOfId() > 0){
+				return video.substr(startOfId, endOfId())
+			} else {
+				return video.substr(startOfId, video.length)
+			}
+		};
 
-			var embed = video;
-			return embed;
+		if (youtubeOne) {
+			var embed = 'https://www.youtube.com/embed/' + youtubeId(typeOne);
+
+			$('input[name="poster"]').val('https://img.youtube.com/vi/' + youtubeId(typeOne) + '/mqdefault.jpg')
+			$('video.poster-preview').attr('poster', 'https://img.youtube.com/vi/' + youtubeId(typeOne) + '/mqdefault.jpg');
+		} else if (youtubeTwo) {
+			var embed = 'https://www.youtube.com/embed/' + youtubeId(typeTwo);
+
+			$('input[name="poster"]').val('https://img.youtube.com/vi/' + youtubeId(typeTwo) + '/mqdefault.jpg')
+			$('video.poster-preview').attr('poster', 'https://img.youtube.com/vi/' + youtubeId(typeTwo) + '/mqdefault.jpg');
+		} else if (youtubeThree) {
+			var embed = 'https://www.youtube.com/embed/' + youtubeId(typeThree);
+
+			$('input[name="poster"]').val('https://img.youtube.com/vi/' + youtubeId(typeThree) + '/mqdefault.jpg')
+			$('video.poster-preview').attr('poster', 'https://img.youtube.com/vi/' + youtubeId(typeThree) + '/mqdefault.jpg');
 		}
+
+		return embed
 
 	},
 	youtubeVideo:function(){
@@ -165,27 +182,23 @@ Template.video.onCreated(function(){
 
 Template.video.onRendered(function(){
 	
+	var viewed = Session.get(FlowRouter.getParam("id"));
+	if (viewed){
+		var now = new Date();
 
-	Meteor.setTimeout(function(){
-		var viewed = Session.get(FlowRouter.getParam("id"));
-		if (viewed){
-			var now = new Date();
-
-			if ((now - viewed) > 600000){
-
-				Meteor.call('viewCount', Session.get('clientIP'), FlowRouter.getParam('id'), function(){
-					Session.set(FlowRouter.getParam("id"), new Date());
-				});
-			} else {
-
-			}
-		} else {
+		if ((now - viewed) > 600000){
 
 			Meteor.call('viewCount', Session.get('clientIP'), FlowRouter.getParam('id'), function(){
 				Session.set(FlowRouter.getParam("id"), new Date());
 			});
+		} else {
+
 		}
-	}, 5000);
-	
+	} else {
+
+		Meteor.call('viewCount', Session.get('clientIP'), FlowRouter.getParam('id'), function(){
+			Session.set(FlowRouter.getParam("id"), new Date());
+		});
+	}
 
 });

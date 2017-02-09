@@ -1,4 +1,6 @@
 <template name="login">
+	{{> atForm}}
+	<!--
 	<div class="login-wrapper">
 		{{#if loginPage 'register'}}
 			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 register">
@@ -6,7 +8,7 @@
 					<h3 class="text-center">Create Account</h3>
 				</div>
 				
-				<form class="register" autocomplete="off">
+				<form id="register" class="register" autocomplete="off">
 					<div class="form-group col-xs-12">
 						<label for="username">Username</label>
 						<input type="text" class="username form-control" id="username" autocomplete="off" autofocus>
@@ -26,8 +28,18 @@
 							<div class="btn btn-default horde-button"></div>
 						</div>
 					</div>
+					<div class="form-group col-xs-12 server-select">
+						<label for="server-preference">Server Preference</label>
+						<select id="server-preference" class="form-control server-preference">
+							<option value="Server Preference">Server (Select One)</option>
+							<option value="Anathema">Anathema</option>
+							<option value="Darrowshire">Darrowshire</option>
+							<option value="Elysium">Elysium</option>
+							<option value="Zeth'Kur">Zeth'Kur</option>
+						</select>
+					</div>
 					<div class="form-buttons">
-						<button class="btn btn-default btn-signup col-xs-12" type="submit">CREATE ACCOUNT</button>
+						<button class="btn btn-default btn-signup col-xs-12" type="submit" for="register">CREATE ACCOUNT</button>
 					</div>
 					<div class="return-login text-center">
 						<span class="text-center"><a href="" class="login-to-account">Already have an account? Login here.</a></span>
@@ -40,7 +52,7 @@
 					<h3 class="text-center">Elysium Movies</h3>
 				</div>
 				
-				<form class="login" autocomplete="off">
+				<form id="login" class="login" autocomplete="off">
 					<div class="form-group col-xs-12">
 						<label for="username">Username</label>
 						<input type="text" class="username form-control" id="username" autocomplete="off" autofocus>
@@ -49,7 +61,7 @@
 						<input type="password" class="form-control password" id="password" autocomplete="off" placeholder="Password">
 					</div>
 					<div class="form-buttons">
-						<button class="btn btn-default btn-login col-xs-12" type="submit">LOGIN</button>
+						<button class="btn btn-default btn-login col-xs-12" type="submit" for="login">LOGIN</button>
 					</div>
 					<div class="create-account text-center">
 						<span class="text-center"><a href="" class="register-to-site">Create new account.</a></span>
@@ -58,4 +70,5 @@
 			</div>
 		{{/if}}
 	</div>
+	-->
 </template>

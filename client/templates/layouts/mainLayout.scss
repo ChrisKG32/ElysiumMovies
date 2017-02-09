@@ -1,5 +1,15 @@
 @import '../../stylesheets/placeholders/_variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('/font/LifeCraft_Font.ttf');
+@import url('/font/Morpheus.ttf');
+@font-face {
+	font-family: LifeCraft;
+	src: url('/font/LifeCraft_Font.ttf');
+}
+@font-face {
+	font-family: Morpheus;
+	src: url('/font/Morpheus.ttf');
+}
 
 body, html {
 	min-height: 50vh;
@@ -17,8 +27,33 @@ body {
 
 }
 
+* {
+   -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -ms-backface-visibility: hidden;
+   backface-visibility: hidden;
+   /* Other transform properties here */
+}
+
 .page-wrapper {
 	//Navbar height 70px;
 	//distance from navbar 15px;
 	margin-top: calc(70px + 15px);
+}
+
+.header-txt {
+	display: block;
+	text-align: center;
+	font-family: LifeCraft;
+	margin: 0;
+	font-size: 400%;
+	color: #2a2a57;
+}
+
+.brand-name {
+	transform: translateY(-75%);
+	font-family: Morpheus;
+	font-size: 200%;
+	padding:0;
+	color: #2a2a57;
 }

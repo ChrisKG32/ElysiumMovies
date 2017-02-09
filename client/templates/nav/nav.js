@@ -1,5 +1,5 @@
 Template.nav.events({
-	'click .server-name, click .navbar-link':function(e, tmpl){
+	'click .server-name, click .navbar-link, click .all':function(e, tmpl){
 		var currentTarget = $(e.currentTarget);
 		if (currentTarget.hasClass('server-name')){
 			serverSelected.set(currentTarget.text());
@@ -7,6 +7,8 @@ Template.nav.events({
 			serverSelected.set('Classic');
 		} else if (currentTarget.hasClass('about')){
 			serverSelected.set('About');
+		} else if (currentTarget.hasClass('all')){
+			serverSelected.set('Any Server');
 		}
 		if (FlowRouter.getRouteName() !== 'home'){
 			FlowRouter.go('home');
@@ -18,7 +20,7 @@ Template.nav.events({
 		$('.navbar-server, .navbar-donate').removeClass('active');
 	},
 	'click .log-out':function(e, tmpl){
-	 	Meteor.logout();
+	 	AccountsTemplates.logout();
 	},
 	'click .login-page':function(e, tmpl){
 		if (typeof loginPage == 'undefined'){
@@ -30,6 +32,9 @@ Template.nav.events({
 		} else {
 			loginPage.set(false);
 		}
+	},
+	'click .retract':function(e, tmpl){
+		$('.navbar-collapse.collapse.in').removeClass('in').attr('aria-expanded', 'false');
 	}
 });
 
@@ -49,10 +54,18 @@ Template.nav.helpers({
 		} else {
 			return ''
 		}
+	},
+	serverActive:function(){
+		let yes = serverSelected.get();
+		if (yes && yes !== 'Classic'){
+			return 'active'
+		} else {
+			return ''
+		}
 	}
 })
 
-Template.nav.onCreated(function(){
+Template.nav.onCreated(function(){	
 	serverSelected = new ReactiveVar(false);
 
 });

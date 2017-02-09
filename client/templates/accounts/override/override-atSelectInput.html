@@ -1,0 +1,10 @@
+<template name="override-atSelectInput">
+  <div class="at-input field form-group">
+    <label>{{displayName}}</label>
+    <select class="form-control" id="at-field-{{_id}}" name="at-field-{{_id}}">
+      {{#each values}}
+        <option value="{{value}}">{{text}}</option>
+      {{/each}}
+    </select>
+  </div>
+</template>

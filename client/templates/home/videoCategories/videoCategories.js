@@ -36,16 +36,23 @@ Template.videoCategories.helpers({
 
 		var classSelected = Template.instance().classSelected.get();
 		var categorySelected = Template.instance().categorySelected.get();
-		if ((classSelected && classSelected !== 'All Classes') && categorySelected) {
-			var vidCol = Videos.find({ class: classSelected, type: categorySelected });
-		} else if (classSelected && classSelected !== 'All Classes') {
-			var vidCol = Videos.find({ class: classSelected });
 
-		} else if (categorySelected){
-			var vidCol = Videos.find({ type: categorySelected });
-		} else {
-			var vidCol = Videos.find({});
+		var options = {};
+		if (serverSelected.get() && serverSelected.get() !== 'Any Server'){
+			options.server = serverSelected.get();
 		}
+		if (categorySelected) {
+			options.type = categorySelected;
+		} 
+		if (classSelected && classSelected !== 'All Classes') {
+			options.class = classSelected;
+		} 
+
+		var vidCol = Videos.find(options);
+		Meteor.setTimeout(function(){
+			$('.reactive-table-input').attr('placeholder','Search');
+		}, 200)
+		
 		
 		return {
 			collection: vidCol,
@@ -112,6 +119,8 @@ Template.videoCategories.onCreated(function(){
 	});
 	
 	this.subscribe('profiles');
+
+
 
 });
 

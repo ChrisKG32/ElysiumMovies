@@ -1,73 +1,28 @@
 <template name="popularVideos">
 	<div class="popular-videos col-xs-12">
-		<img src="/images/Popular Videos.png" class="header-img text-center">
+		<h2 class="header-txt">Popular Videos</h2>
 		{{#if Template.subscriptionsReady}}
-		<div class="spotlight-container col-xs-12">
-			{{#each spotlight}}
-				<div class="vid-container">
-					<a href="{{pathFor '/video/:id' id=_id}}">
-						<div class="img-container {{classHelper @index}}">
-							<div class="video-preview" style="background-image: url('{{poster}}');">
-								<span class="vid-name">{{name}}</span>
-								<span class="fa fa-eye"> {{viewCount}}</span>
-								<span class="fa fa-comment"> {{commentCount}}</span>
-								<span class="fa fa-star"> {{likes}} </span>
-								<span class="vid-author fa fa-cloud-download"> {{authorHelper}}</span>
-							</div>
-						</div>	
-					</a>
-				</div>
-			{{/each}}
-		</div>
-		<!--
-			{{#with spotlight 0}}
-				<div class="vid-container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 col-md-offset-0 col-lg-3 col-lg-offset-0">
-					<h4 class="text-center">{{name}}</h4>
-					<a href="{{pathFor '/video/:id' id=_id}}">
-						<div class="img-container">
-							<img class="video-preview" src="{{poster}}">
-						</div>	
-					</a>					
-					<h4 class="text-center">Poster: {{authorHelper}}</h4>
-				</div>
-			{{/with}}
-			{{#with spotlight 1}}
-				<div class="vid-container col-xs-10 col-sm-6 col-md-4 col-lg-3 hidden-xs">
-					<h4 class="text-center">{{name}}</h4>
-					<a href="{{pathFor '/video/:id' id=_id}}">
-					<div class="img-container">
-						<img class="video-preview" src="{{poster}}">
-						<div class="after"></div>
-					</div>
-					</a>						
-					<h4 class="text-center">Poster: {{authorHelper}}</h4>
-				</div>
-			{{/with}}
-			{{#with spotlight 2}}
-				<div class="vid-container col-xs-10 col-sm-6 col-md-4 col-lg-3 hidden-xs hidden-sm">
-					<h4 class="text-center">{{name}}</h4>
-					<a href="{{pathFor '/video/:id' id=_id}}">
-					<div class="img-container">
-						<img class="video-preview" src="{{poster}}">
-						<div class="after"></div>
-					</div>
-					</a>						
-					<h4 class="text-center">Poster: {{authorHelper}}</h4>
-				</div>
-			{{/with}}
-			{{#with spotlight 3}}
-				<div class="vid-container col-xs-10 col-sm-6 col-md-4 col-lg-3 hidden-sm hidden-xs hidden-md">
-					<h4 class="text-center">{{name}}</h4>
-					<a href="{{pathFor '/video/:id' id=_id}}">
-					<div class="img-container">
-						<img class="video-preview" src="{{poster}}">
-						<div class="after"></div>
-					</div>
-					</a>						
-					<h4 class="text-center">Poster: {{authorHelper}}</h4>
-				</div>
-			{{/with}}
-		-->
+			<div class="spotlight-container col-xs-12">
+				{{#if spotlight}}
+					{{#each spotlight}}
+						<div class="vid-container">
+							<a href="{{pathFor '/video/:id' id=_id}}">
+								<div class="img-container {{classHelper @index}}">
+									<div class="video-preview" style="background-image: url('{{poster}}');">
+										<span class="vid-name">{{name}}</span>
+										<span class="fa fa-eye"> {{viewCount}}</span>
+										<span class="fa fa-comment"> {{commentCount}}</span>
+										<span class="fa fa-star"> {{likes}} </span>
+										<span class="vid-author fa fa-cloud-download"> {{authorHelper}}</span>
+									</div>
+								</div>	
+							</a>
+						</div>
+					{{/each}}
+				{{else}}
+					<h3 class="no-videos text-center"><a href="/upload">Upload</a> a video{{serverName}}.</h3>
+				{{/if}}
+			</div>
 		{{else}}
 			{{> spinner}}
 		{{/if}}

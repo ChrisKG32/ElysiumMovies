@@ -7,7 +7,13 @@ Template.newVideos.events({
 
 Template.newVideos.helpers({
 	newVids:function(){
-		var newVids = Videos.find({}, {sort: {createdAt: -1}, limit: 10}).fetch();
+		var options = {};
+		if (serverSelected.get() && serverSelected.get() !== 'Any Server'){
+			options.server = serverSelected.get();
+		}
+		var newVids = Videos.find(options, {sort: {createdAt: -1}, limit: 10}).fetch();
+
+		
 
 		newVids = newVids.filter(function(entry){
 			if (!entry.viewCount) {

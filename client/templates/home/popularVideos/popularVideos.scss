@@ -57,7 +57,7 @@
 					height: 100%;
 					background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.2), rgba(0,0,0,0.2), rgba(0,0,0,0.9));
 				}
-				span {
+				.vid-name, .fa-eye, .fa-comment, .likes-star {
 					position: absolute;
 					z-index: 2;
 					color: rgb(235,235,235);
@@ -71,9 +71,51 @@
 					bottom: 10px;
 					left: 15px;
 				} 
-				span.fa-star {
-					bottom: 10px;
-					right: 15px;
+				span.likes-star {
+					bottom: 5px;
+					right: 10px;
+					.star-style {
+						
+						&.bronze-star {
+							text-shadow: 0px 1px 1px black;
+							color: #CD853F;
+						}
+
+						&.silver-star {
+							text-shadow: 0px 1px 1px rgb(200,200,200);
+							color: #C0C0C0;
+						}
+
+						&.gold-star {
+							text-shadow: 0px 1px 1px white;
+							color: #DAA520;
+						}
+
+						&.plat-star {
+							color: #FFFAFA;
+							text-shadow: 0px 1px 5px white;
+						}
+
+						&.super-star {
+							color: #E0FFFF;
+							text-shadow: 0px 1px 10px white;
+						}
+
+						&.bad-star {
+							text-shadow: 0px 1px 1px black;
+							color: #8B4513;
+						}
+
+						&.horrible-star {
+							text-shadow: 0px 1px 1px #660000;
+							color: #666633;
+						}
+						
+						&.worst-star {
+							text-shadow: 0px 1px 3px #FF4500;
+							color: #808000
+						}
+					}
 				}
 				span.fa-comment {
 					bottom: 10px;

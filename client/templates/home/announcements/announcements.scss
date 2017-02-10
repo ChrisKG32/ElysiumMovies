@@ -1,0 +1,51 @@
+@import '../../../stylesheets/placeholders/_variables.scss';
+
+.announcements {
+
+	&.dismissed {
+		display: none;
+	}
+	min-height: calc(40vh - #{$navbar-height});
+	//Margins
+	margin-bottom: 15px;
+	//Paddings
+	padding: 10px 15px 20px 15px;
+
+	//Styling
+	@include templateStyle();
+
+	.fa-close {
+		font-size: 150%;
+		cursor: pointer;
+	}
+	h4 {
+		font-size: 150%;
+		display: inline-block;
+		margin: 0 auto;
+		width: 80%;
+		border-bottom: 1px solid $table-border-color;
+	}
+	.announcement-text {
+		
+		.paragraph-header {
+			margin-bottom: 0;
+			padding-bottom: 5px;
+		}
+		p {
+			padding: 10px;
+		}
+	}
+
+	.announcement-list {
+		ul {
+			font-size: 120%;
+
+			small {
+
+			}
+		}
+		h5 {
+			font-size: 125%;
+		}
+	}
+}

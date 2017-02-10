@@ -83,10 +83,132 @@
 	.video-details {
 		@include templateStyle();
 		padding-bottom: 25px;
-		padding-top: 5px;
+		padding-top: 10px;
 		margin-bottom: 15px;
+		overflow: hidden;
 		min-height: calc((35vh + 15px) - (#{$navbar-height}));
 
+			.data-wrapper {
+				padding-top: 10px;
+				@extend %no-gutter;
+				 li {
+				 	padding-left: 10px;
+				 }
+			}
+
+			.desc-wrapper {
+				padding-top: 15px;
+				font-size: 120%;
+				.desc-header {
+					margin-top: 0;
+				}
+				p {
+					margin-top: 0;
+				}
+			}
+
+			
+			.header-info {
+				padding: 5px 5px 10px 5px;
+				margin-top: 0;
+				border-bottom: 1px solid black;
+				border-color: $table-border-color;
+
+				h2, h3 {
+					margin:0;
+					padding: 5px;
+
+				}
+				.video-name-header {
+
+					@extend %no-gutter;
+					font-size: 200%;
+
+					.view-count {
+						font-size: 75%;
+					}
+				}
+
+				.sub-header {
+					h3 {
+						font-size: 150%;
+					}
+					@extend %no-gutter;
+
+					.like-info {
+						font-size: 150%;
+
+						.fa-thumbs-down {
+							cursor: pointer;
+							padding: 5px;
+							margin-left: 25px;
+							margin-right: 40px;
+							font-size: 125%;
+							&.active {
+								color: #d9534f;
+								text-shadow: 0px 1px 1px rgb(50,50,50);
+							}
+						}
+						.fa-thumbs-up {
+							cursor: pointer;
+							padding: 5px;
+							font-size: 125%;
+							&.active {
+								color: #5cb85c;
+								text-shadow: 0px 1px 1px rgb(50,50,50);
+							}
+						}
+
+						.star-style {
+							
+							&.bronze-star {
+								text-shadow: 0px 1px 1px black;
+								color: #CD853F;
+							}
+
+							&.silver-star {
+								text-shadow: 0px 1px 1px black;
+								color: #C0C0C0;
+							}
+
+							&.gold-star {
+								text-shadow: 0px 1px 1px black;
+								color: #DAA520;
+							}
+
+							&.plat-star {
+								color: #FFFAFA;
+								text-shadow: 0px 1px 5px black;
+							}
+
+							&.super-star {
+								color: #E0FFFF;
+								text-shadow: 0px 1px 5px black;
+							}
+
+							&.bad-star {
+								text-shadow: 0px 1px 1px black;
+								color: #8B4513;
+							}
+
+							&.horrible-star {
+								text-shadow: 0px 1px 1px #660000;
+								color: #666633;
+							}
+							
+							&.worst-star {
+								text-shadow: 0px 1px 3px #FF4500;
+								color: #808000
+							}
+
+
+
+						}
+					}
+					
+				}
+
+			}
 
 			.header {
 				border-bottom: 1px solid #e7e7e7;

@@ -33,6 +33,34 @@ Template.video.events({
 	},
 	'click .load-more-comments a':function(e, tmpl){
 		tmpl.commentMax.set(tmpl.commentMax.get() + 5);
+	},
+	'click .fa-thumbs-up, click .fa-thumbs-down':function(e, tmpl){
+		var currentUser = Meteor.userId();
+		if (!currentUser){
+			alert('You must be logged in to like or dislike videos');
+		} else {
+			var currentTarget = $(e.currentTarget);
+			if (currentTarget.hasClass('fa-thumbs-down')){
+				var likeType = 'dislikes';
+			} else {
+				var likeType = 'likes';
+			}
+			var data = {
+				videoId: FlowRouter.getParam('id'),
+				userId: Meteor.userId(),
+				type: likeType
+			}
+			
+			Meteor.call('likes', data);
+
+			if (currentTarget.hasClass('active')){
+				currentTarget.removeClass('active');
+			} else {
+				$('.fa-thumbs-up, .fa-thumbs-down').removeClass('active');
+				$(e.currentTarget).addClass('active');
+			}
+			
+		}
 	}
 });
 
@@ -168,6 +196,39 @@ Template.video.helpers({
 		var username = userProfile && userProfile.username;
 
 		return username
+	},
+	likes:function(){
+		return this.likes.length - this.dislikes.length
+	},
+	thumbs:function(param1){
+		if (this[param1].indexOf(Meteor.userId()) >= 0){
+			return 'active'
+		} else {
+			return ''
+		}
+	},
+	starStyle:function(){
+		var likeOffset = this.likes.length - this.dislikes.length;
+
+		if (likeOffset > 250){
+			return 'fa-star super-star'
+		} else if (likeOffset > 100){
+			return 'fa-star plat-star'
+		} else if (likeOffset > 30) {
+			return 'fa-star gold-star'
+		} else if (likeOffset > 15){
+			return 'fa-star silver-star'
+		} else if (likeOffset > 3) {
+			return 'fa-star bronze-star'
+		} else if (likeOffset <= 3 && likeOffset >= -5){
+			return 'fa-star-o'
+		} else if (likeOffset < -100) {
+			return 'fa-star worst-star'
+		} else if (likeOffset < -20) {
+			return 'fa-star horrible-star'
+		} else if (likeOffset < -5) {
+			return 'fa-star bad-star'
+		} 
 	}
 });
 

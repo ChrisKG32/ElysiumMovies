@@ -3,7 +3,7 @@
 	<div class="video col-xs-12">
 		<div class="video-wrapper text-center col-xs-12">
 			{{#if Template.subscriptionsReady}}
-				<h2 class="text-center page-header">{{name}} by {{authorUsername}}</h2>
+				
 				{{#if youtubeVideo}}
 					<iframe src="{{youtubeEmbed}}" frameborder="0" allowfullscreen></iframe>
 				{{else}}
@@ -21,7 +21,28 @@
 		</div>
 		<div class="video-details col-xs-12">
 			{{#if Template.subscriptionsReady}}
-				<h3 class="text-center header">Video Details</h3>
+				<div class="header-info col-xs-12">
+					<span class="video-name-header col-xs-12">
+						<h2 class="video-name pull-left">{{name}}</h2>
+						<span class="view-count pull-right">{{viewCount}} <span class="fa fa-eye"></span></span>
+					</span>
+					<span class="sub-header col-xs-12">
+						<h3 class="poster-name pull-left">Posted by: {{authorUsername}}</h3>
+						<span class="like-info pull-right">
+							<span class="fa fa-thumbs-up {{thumbs 'likes'}}"></span>
+							<span class="fa fa-thumbs-down {{thumbs 'dislikes'}}"></span>
+							
+							<span class="like-count">
+								{{likes}} <span class="fa star-style {{starStyle}}"></span>
+							</span>
+							
+
+						</span>
+					</span>
+					
+					
+				</div>
+				
 				<div class="data-wrapper col-xs-12 col-md-6">
 					<li class="col-xs-12">Server: {{server}}</li>
 					<li class="col-xs-12">Type: {{type}}</li>
@@ -29,7 +50,8 @@
 					<li class="col-xs-12">Class: {{class}}</li>
 				</div>
 				<div class="desc-wrapper col-xs-12 col-md-6">
-					<p style="margin-top: 0;">Description: <br>{{description}}</p>
+					<h4 class="desc-header col-xs-12">Description: </h4>
+					<p class="col-xs-12">{{description}}</p>
 				</div>
 			{{else}}
 				{{> spinner}}

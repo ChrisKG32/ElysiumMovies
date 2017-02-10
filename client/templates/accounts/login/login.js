@@ -9,6 +9,14 @@ Template.login.onCreated(function(){
 
 Template.login.onRendered(function(){
 
+	Tracker.autorun(function(){
+		var currentUser = Meteor.userId();
+		if (currentUser){
+			FlowRouter.go('home');
+		}
+	});
+	
+
 });
 
 Template.login.events({
@@ -24,8 +32,10 @@ Template.login.events({
 		currentTarget.addClass('selected');
 		$('.faction-select').attr('faction-selected', 'false');
 	}
+
 });
 
 Template.login.onCreated(function(){
 	Session.set('registering', false);
+
 });

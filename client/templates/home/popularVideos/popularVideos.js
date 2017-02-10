@@ -23,12 +23,7 @@ Template.popularVideos.helpers({
 		}
 	},
 	likes:function(){
-		var likeCount = this.likeCount;
-		if (!likeCount){
-			return '0'
-		} else {
-			return likeCount
-		}
+		return this.likes.length - this.dislikes.length
 	},
 	name:function(){
 		var name = this.name;
@@ -79,6 +74,28 @@ Template.popularVideos.helpers({
 			return ''
 		}
 		
+	},
+	starStyle:function(){
+		var likeOffset = this.likes.length - this.dislikes.length;
+		if (likeOffset > 250){
+			return 'fa-star super-star'
+		} else if (likeOffset > 100){
+			return 'fa-star plat-star'
+		} else if (likeOffset > 30) {
+			return 'fa-star gold-star'
+		} else if (likeOffset > 15){
+			return 'fa-star silver-star'
+		} else if (likeOffset > 3) {
+			return 'fa-star bronze-star'
+		} else if (likeOffset <= 3 && likeOffset >= -5){
+			return 'fa-star-o'
+		} else if (likeOffset < -100) {
+			return 'fa-star worst-star'
+		} else if (likeOffset < -20) {
+			return 'fa-star horrible-star'
+		} else if (likeOffset < -5) {
+			return 'fa-star bad-star'
+		} 
 	}
 });
 

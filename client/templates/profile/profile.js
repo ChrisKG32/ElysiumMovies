@@ -81,6 +81,14 @@ Template.profile.events({
 			vpHelpBlock.removeClass('hidden').addClass('danger');
 			posterLabel.addClass('danger');
 		}
+	},
+	'click .category-li a':function(e, tmpl){
+		var currentTarget = $(e.currentTarget).parent().text();
+		tmpl.categorySelected.set(currentTarget);
+	},
+	'click .class-dropdown .class-select a':function(e, tmpl){
+		var currentTarget = $(e.currentTarget).parent().text();
+		tmpl.classSelected.set(currentTarget);
 	}
 });
 	
@@ -94,7 +102,18 @@ Template.profile.helpers({
 	},
 	settings:function(){
 
-		var vidCol = Videos.find({author: Meteor.userId()})
+		var classSelected = Template.instance().classSelected.get();
+		var categorySelected = Template.instance().categorySelected.get();
+
+		var options = {author: Meteor.userId()};
+		if (categorySelected) {
+			options.type = categorySelected;
+		} 
+		if (classSelected && classSelected !== 'All Classes') {
+			options.class = classSelected;
+		} 
+
+		var vidCol = Videos.find(options);
 		
 		return {
 			collection: vidCol,
@@ -110,6 +129,7 @@ Template.profile.helpers({
 						}
 					}
 				},
+				{key: 'server', label: 'Server', headerClass: 'text-center', cellClass: 'text-center'},
 				{key: 'type', label: 'Type', headerClass: 'text-center', cellClass: 'text-center'},
 				{key: 'viewCount', label: 'Views', headerClass: 'text-center', cellClass: 'text-center', 
 					fn:function(value, object, key){
@@ -123,12 +143,7 @@ Template.profile.helpers({
 				},
 				{key: 'likes', label: 'Likes', headerClass: 'text-center', cellClass: 'text-center', 
 					fn:function(value, object, key){
-						if (!value){
-							return 0
-						} else {
-							return value
-						}
-						
+						return object.likes.length - object.dislikes.length
 					}
 				},
 				{key: 'name', label: 'Edit', headerClass: 'text-center', cellClass: 'text-center edit-video', 

@@ -44,7 +44,7 @@ Template.nav.helpers({
 		if (serverName && serverName !== 'Classic' && serverName !== 'About'){
 			return serverName
 		} else {
-			return 'Server'
+			return 'Select Server'
 		}
 	},
 	activeLink:function(param1){

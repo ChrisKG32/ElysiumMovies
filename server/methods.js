@@ -65,5 +65,23 @@ Meteor.methods({
 	},
 	deleteVideo:function(data){
 		Videos.remove(data._id);
+	},
+	likes:function(data){
+		var thisVideo = Videos.findOne({_id: data.videoId});
+		if (thisVideo && !thisVideo.dislikes){
+			Videos.update({_id: data.videoId}, {$set: {dislikes: []}});
+		}
+		if (thisVideo && !thisVideo.likes){
+			Videos.update({_id: data.videoId}, {$set: {likes: []}});
+		}
+
+		var undo = (Videos.findOne({_id: data.videoId})[data.type]).indexOf(data.userId);
+		console.log(undo);
+		if (undo >= 0){
+			Videos.update({_id: data.videoId}, {$pull: {[data.type]: data.userId}});
+		} else {
+			Videos.update({_id: data.videoId}, {$pull: {likes: data.userId, dislikes: data.userId}});
+			Videos.update({_id: data.videoId}, {$addToSet: {[data.type]: data.userId}});
+		}
 	}
 });

@@ -174,5 +174,14 @@ Template.upload.onCreated(function(){
 	hdVideoURL = new ReactiveVar(false);
 	posterURL = new ReactiveVar(false);
 
-	AutoForm.debug();
+	
+});
+Template.upload.onRendered(function(){
+	var hooksObject = {
+		onSuccess: function(formType, result){
+			console.log(result);
+			FlowRouter.go('/video/' + result);
+		}
+	}
+	AutoForm.addHooks('video-form', hooksObject, true);
 });

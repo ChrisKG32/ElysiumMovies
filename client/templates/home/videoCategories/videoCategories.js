@@ -10,8 +10,13 @@ Template.videoCategories.events({
 		tmpl.classSelected.set(currentTarget);
 	},
 	'click #vid-categories tbody tr':function(e, tmpl){
-		var target = $(e.target);
-		FlowRouter.go('/video/' + this._id);
+		if (e.metaKey || e.ctrlKey){
+			window.open('https://www.elysium-movies.com/video/' + this._id);
+		} else {
+			var target = $(e.target);
+			FlowRouter.go('/video/' + this._id);
+		}
+		
 	}
 });
 
@@ -79,7 +84,11 @@ Template.videoCategories.helpers({
 					}
 				},
 				{key: 'type', label: 'Type', headerClass: 'text-center', cellClass: 'text-center'},
-				{key: 'faction', label: 'Faction', headerClass: 'text-center', cellClass: 'text-center'},
+				{key: 'createdAt', label: 'Uploaded', headerClass: 'text-center', cellClass: 'text-center', 
+					fn:function(value, object, key){
+						return moment(value).fromNow()
+					}
+				},
 				{key: 'class', label: 'Class', headerClass: 'text-center', cellClass: 'text-center'},
 				{key: 'viewCount', label: 'Views', headerClass: 'text-center', cellClass: 'text-center', 
 					fn:function(value, object, key){
@@ -93,11 +102,7 @@ Template.videoCategories.helpers({
 				},
 				{key: 'likes', label: 'Likes', headerClass: 'text-center', cellClass: 'text-center', 
 					fn:function(value, object, key){
-						if (!value){
-							return 0
-						} else {
-							return value
-						}
+						return object.likes.length - object.dislikes.length
 						
 					}
 				}
